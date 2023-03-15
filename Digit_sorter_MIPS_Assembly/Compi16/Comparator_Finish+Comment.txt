@@ -1,0 +1,114 @@
+INIT1  LDA    STAB      ;					Tabellenpointer initialisieren
+       STA    PTAB      ;					~
+       LDA    SSTOR     ;					Storagepointer initialisieren
+       STA    PSTOR     ;					~
+       LDA    NULL      ;					Hilfsvariable 0 setzen
+       STA    NUM       ;					~
+INIT2  LDA    NULL      ;					Zahl 0 laden und an aktuelle adresse im Pointer speichern	
+       STA,I  PSTOR     ;					~
+       LDA    PSTOR     ;					Pointer inkrementieren und rückspeichern
+       ADD    ONE       ;					~
+       STA    PSTOR     ;					~
+       SUB    SSTOR     ;					Startadresse abziehen
+       CMP    NINE		;					Mit 9 vergleichen
+       JLE    INIT2     ;					Wenn kleiner gleich 9 muss speicher weiter initialisiert werden. 
+       JMP    INPUT     ;					Sonst weiter
+INPUT  RDA              ; 					Tastaturpuffer einlesen
+       CMP    ASCOFF    ;					Mit ASCII offset von 0 vergleichen. 
+       JLT    EXCEPT    ;					ASCII codes unter 0 keine Zahlen -> Exception
+       SUB    ASCOFF    ;					ASCII offset abziehen
+       CMP    NINE      ;	 				Exception für input groesser 9
+       JGT    EXCEPT    ;					~
+       JMP    SAVE      ;					Weiter zu speichern
+EXCEPT LDA    NULL      ;					Bei Exception eine 0 speichern
+       JMP    SAVE      ;
+	   
+
+;---Speichern aller Inputs in die Tabelle---
+SAVE   STA,I  PTAB;							Wenn exceptionchecks passiert, speichern an aktuellen Tabellenplatz
+       LDA    PTAB;							Tabellenpointer inkrementieren und rückspeichern
+       ADD    ONE;							~
+       STA    PTAB;							~
+       SUB    STAB;							Pointerstart abziehen -> gibt Anzahl der inputs bis jetzt -1
+       CMP    INMAX;						Vergleichen mit Maximaler Anzahl an inputs
+       JGE    CLEAN1;						Falls gleich, ist die Maximale Anzahl an inputs erreicht -> weiter zum cleanup und Ausgabe
+       JMP    INPUT;						Sonst nächsten input lesen.
+CLEAN1 LDA    STAB;							Tabellenpointer auf Startadresse setzen
+       STA    PTAB;							Danach weiter zum Comparator
+       JMP    COMPAR;
+	   
+	   
+;---Zählen, wie oft jede Ziffer vorkommt---
+COMPAR LDA,I  PTAB;							Den Wert an der Adresse im Tabellenpointer laden
+       ADD    SSTOR;						Startadresse addieren
+       STA    PSTOR;						in den pointer speichern
+       LDA,I  PSTOR;						Zahl an Adresse inkrementieren
+       ADD    ONE;							~
+       STA,I  PSTOR;						Inkrementierten wert Rückspeichern
+       LDA    PTAB;							Tabellenpointer inkrementieren
+       ADD    ONE;							~
+       STA    PTAB;							Rückspeichern
+       SUB    STAB;							Adressoffset abziehen und mit der maximalen inputanzahl vergleichen
+       CMP    INMAX;						~
+       JGE    OUTPUT;						Wenn groesser, output, sonst wiederholen
+       JMP    COMPAR;					
+	   
+	   
+;---Ausgabe der Ziffern in geordneter Reihenfolge---
+OUTPUT LDA    NUM;							Num dient als momentan betrachtete Zahl, wurde als 0 initialisiert.
+       ADD    SSTOR;						Startadresse des Storage addieren und in den Pointer rückspeichern
+       STA    PSTOR;						~
+       LDA,I  PSTOR;						Zahl im betrachteten Counter als Loopzähler -> die Betrachtete Zahl wird so oft ausgegeben.
+       STA    VLOOP;						~
+       JMP    OUTLOOP;						Sprung zum Outloop
+	   
+OUTLOOP LDA    VLOOP;
+       CMP ONE;								Vor Ausführung der Ausgabe schauen, wie oft noch ausgegeben werden soll
+       JGE NUMOUT;							Wenn eine oder mehr Ausgaben, Sprung zur Ausgabe
+       LDA NUM;								Wenn Vloop erschöpft, betrachtete Zahl laden und mit 0 vergleichen
+       CMP NINE;							~
+       JEQ HALT;							Für 9 als betrachtete Zahl und 
+       ADD ONE;								Sonst incrementieren,
+       STA NUM;								Rückspeichern
+       JMP OUTPUT;							und zurück zum Output
+NUMOUT LDA NUM;								Betrachtete Zahl laden,  
+       ADD ASCOFF;							ASCII-offset addieren
+       WRA;									und Accumulator ausgeben
+       LDA VLOOP;							VLOOP decrementieren
+       SUB ONE;								~
+       STA VLOOP;							und Rückspeichern
+       JMP OUTLOOP;							zurück zu outloop
+HALT   HLT;									Programm beenden
+;---Storage---
+
+;---Konstanten---
+NULL   DEC 0;
+ONE	   DEC 1;
+NINE   DEC 9;
+ASCOFF DEC 48; 								Offset der ASCII 0 zur regulären 0
+INMAX  DEC 5; 								Maximale Anzahl an inputs minus eins (also maximale speicheradresse)
+;---Zwischenspeicher der Inputs (beliebig zu erweitern)---
+STAB   DEF TAB0;							Startadresse der Tabelle
+PTAB   HEX 0; 								Tabellenpointer
+TAB0   DEC 0;
+TAB1   DEC 0;
+TAB2   DEC 0;
+TAB3   DEC 0;
+TAB4   DEC 0;
+;---Counter der Einzelnen Zahlen---
+NUM    DEC 0;								Hilfsvariable für die Ausgabe
+SSTOR  DEF C0;								Startadresse des Storage
+PSTOR  HEX 0;								Speicherpointer
+C0     DEC 0;
+C1     DEC 0;
+C2     DEC 0;
+C3     DEC 0;
+C4     DEC 0;
+C5     DEC 0;
+C6     DEC 0;
+C7     DEC 0;
+C8     DEC 0;
+C9     DEC 0;
+;---Hilfsvariablen---
+VLOOP  DEC 0;								Loop-Variable für die Ausgabe
+
