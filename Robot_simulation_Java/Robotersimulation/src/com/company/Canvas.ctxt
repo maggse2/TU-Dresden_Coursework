@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Canvas
+comment1.params=
+comment1.target=Canvas()
+comment1.text=\r\n\ The\ constructor\ of\ Canvas\ creates\ the\ windows\ for\ the\ simulation.\r\n
+comment2.params=
+comment2.target=Canvas\ getCanvas()
+comment2.text=\r\nMethod\ checks\ if\ there\ is\ an\ existing\ Canvas\ and\ creates\ a\ new\ one\ if\ necessary\ ->\ Singleton\r\n
+comment3.params=ms
+comment3.target=void\ wait(int)
+comment4.params=Obs
+comment4.target=void\ drawObs(java.util.ArrayList)
+comment5.params=
+comment5.target=void\ repaint()
+numComments=6

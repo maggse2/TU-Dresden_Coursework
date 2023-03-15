@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=Rectangle
+comment1.params=position\ width\ length\ name1\ color
+comment1.target=Rectangle(Point,\ int,\ int,\ java.lang.String,\ java.awt.Color)
+comment1.text=\r\n\ Constructor\ for\ rectangles.\r\n\ Currently\ all\ input\ methods\ as\ well\ as\ the\ rng\ only\ give\ positive\ integers,\ thus\ there\ is\ no\ need\ to\ ensure\r\n\ positive\ values\ in\ this\ method.\r\n\ @param\ position\r\n\ @param\ width\r\n\ @param\ length\r\n\ @param\ name1\r\n\ @param\ color\r\n
+comment2.params=
+comment2.target=void\ printAtr()
+comment3.params=r2
+comment3.target=boolean\ checkOverlapR(Rectangle)
+comment3.text=\r\n\ Lightweight\ method\ to\ check\ if\ Rectangles\ overlap\ each\ other.\r\n\ This\ works\ by\ comparing\ the\ overlap\ for\ each\ dimension.\ If\ the\ overlap\ is\ true\ for\ two\ dimensions,\r\n\ 'TRUE'\ is\ displayed.\r\n\ @param\ r2\r\n\ @return\r\n
+comment4.params=
+comment4.target=int\ minX()
+comment5.params=
+comment5.target=int\ minY()
+comment6.params=
+comment6.target=int\ maxX()
+comment7.params=
+comment7.target=int\ maxY()
+numComments=8

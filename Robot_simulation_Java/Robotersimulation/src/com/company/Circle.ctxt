@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Circle
+comment1.params=position\ radius
+comment1.target=Circle(Point,\ int)
+comment2.params=
+comment2.target=int\ getRadius()
+comment3.params=
+comment3.target=int\ minX()
+comment4.params=
+comment4.target=int\ minY()
+comment5.params=
+comment5.target=int\ maxX()
+comment6.params=
+comment6.target=int\ maxY()
+numComments=7

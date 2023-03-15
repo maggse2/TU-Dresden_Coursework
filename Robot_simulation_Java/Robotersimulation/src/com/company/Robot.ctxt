@@ -1,0 +1,18 @@
+#BlueJ class context
+comment0.target=Robot
+comment1.params=position\ radius
+comment1.target=Robot(Point,\ int)
+comment2.params=
+comment2.target=void\ voiceRecognition()
+comment2.text=\r\n\ Voice\ recognition\ algorithm\ according\ to\ the\ task\ sheet.\r\n
+comment3.params=
+comment3.target=boolean\ touchingBoundaryX()
+comment3.text=\r\n\ Checking\ if\ the\ Robot\ is\ touching\ the\ boundaries\ of\ the\ field.\r\n\ @return\r\n
+comment4.params=
+comment4.target=boolean\ touchingBoundaryY()
+comment5.params=figures
+comment5.target=boolean\ tooCloseTo_xEdge(Rectangle)
+comment5.text=\r\n\ Avoiding\ the\ rectangles\ in\ a\ similar\ way\ we\ did\ the\ overlap\ check.\r\n\ @param\ figures\ List\ of\ obstacles\ we\ want\ to\ avoid.\r\n\ @return\ Boolean\:\ Too\ close\ or\ not?\r\n
+comment6.params=figures
+comment6.target=boolean\ tooCloseTo_YEdge(Rectangle)
+numComments=7

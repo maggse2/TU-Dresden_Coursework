@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=DrawingSurface
+comment1.params=g
+comment1.target=void\ paintComponent(java.awt.Graphics)
+comment1.text=\r\n\ The\ overwritten\ paintComponent\ Method\ calls\ the\ super\ Method\ to\ clear\ the\ Canvas\ (advised\ on\ Stackoverflow)\r\n\ We\ limited\ this\ method\ to\ only\ draw\ our\ singular\ robot.\ If\ more\ circles\ are\ desired,\ this\ method\ must\ be\r\n\ reworked.\r\n\ @param\ g\r\n
+comment2.params=newObs
+comment2.target=void\ repaintObs(java.util.ArrayList)
+comment2.text=\r\n\ We\ could\ not\ really\ adapt\ ourselves\ to\ the\ 'Zeichne\ Figuren'\ method\ from\ the\ task\ and\ made\ the\ repaint\ a\ little\r\n\ differently.\ We\ apologize\ for\ the\ inconvenience.\r\n\ @param\ newObs\r\n
+comment3.params=
+comment3.target=void\ repaint()
+numComments=4
