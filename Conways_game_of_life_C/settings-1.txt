@@ -1,0 +1,6 @@
+Zeilen: 100
+Spalten: 100
+Schritt: 0
+Schritte: 150
+Pause: 100 ms
+
